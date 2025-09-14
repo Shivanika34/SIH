@@ -3,7 +3,7 @@ export async function uploadToFirebase({ description, location, file, dropboxPat
     throw new Error("File is missing or invalid.");
   }
 
-  const { db } = await import("../firebase/config");
+  const { db } = await import("../firebase/config.js");
   const { collection, addDoc, serverTimestamp } = await import("firebase/firestore");
 
   return await addDoc(collection(db, "uploads"), {
@@ -15,26 +15,19 @@ export async function uploadToFirebase({ description, location, file, dropboxPat
   });
 }
 
-export async function uploadToMongo({ description, location, fileName, dropboxPath }) {
-  if (!fileName || !dropboxPath) {
-    throw new Error("Missing required metadata.");
-  }
-
-  const res = await fetch("http://localhost:5000/api/alerts", {
+export const uploadToMongo = async (metadata) => {
+  const response = await fetch("http://localhost:5000/api/upload", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      description,
-      location,
-      fileName,
-      dropboxPath,
-    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(metadata),
   });
 
-  if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`MongoDB upload failed: ${errorText}`);
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to save metadata: ${errorText}`);
   }
 
-  return await res.json();
-}
+  return response.json();
+};

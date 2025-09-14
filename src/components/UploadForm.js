@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { uploadToFirebase, uploadToMongo } from "./uploadService";
+import { uploadToFirebase, uploadToMongo } from "./uploadService.js";
 
 export default function UploadForm() {
   const [description, setDescription] = useState("");
@@ -26,7 +26,7 @@ export default function UploadForm() {
     setMessage("");
 
     try {
-      // Upload to Dropbox
+      // ✅ Upload file to Dropbox
       const response = await fetch("https://content.dropboxapi.com/2/files/upload", {
         method: "POST",
         headers: {
@@ -57,6 +57,7 @@ export default function UploadForm() {
         dropboxPath,
       };
 
+      // ✅ Save metadata in MongoDB or Firebase
       if (useMongo) {
         await uploadToMongo(metadata);
       } else {

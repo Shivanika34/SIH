@@ -1,0 +1,125 @@
+/* General styles */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f6fb;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* App container */
+#root, .app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+h1 {
+  color: #2d3a4b;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+/* UploadForm styles */
+.upload-form {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 340px;
+  margin-bottom: 32px;
+}
+
+.upload-form input[type="text"],
+.upload-form input[type="file"] {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f9fafb;
+}
+
+.upload-form button {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-form button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+
+.upload-form p {
+  margin: 0;
+  color: #e11d48;
+  font-size: 0.98rem;
+}
+
+/* Login styles */
+.login-form {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 340px;
+  margin-bottom: 32px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f9fafb;
+}
+
+.login-form button {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-form button:disabled {
+  background: #a7f3d0;
+  cursor: not-allowed;
+}
+
+.login-form p {
+  margin: 0;
+  color: #e11d48;
+  font-size: 0.98rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .upload-form, .login-form {
+    width: 95vw;
+    padding: 18px 6vw;
+  }
+  h1 {
+    font-size: 1.4rem;
+  }
+}

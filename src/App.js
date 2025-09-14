@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import UploadForm from "./components/UploadForm";
-import Login from "./components/Login";
-import { auth } from "./firebase/config"; // Adjust the path if needed
+import UploadForm from "./components/UploadForm.js";
+import Login from "./components/Login.js";
+import { auth } from "./firebase/config.js"; 
 import { onAuthStateChanged } from "firebase/auth";
+import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
