@@ -1,125 +1,279 @@
-/* General styles */
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f4f6fb;
+/* App.css - Main application styles */
+
+* {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-/* App container */
-#root, .app-container {
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f8fafc;
+  color: #2d3748;
+}
+
+.app {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-loading {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
 }
 
-/* Header */
-h1 {
-  color: #2d3a4b;
-  margin-top: 32px;
-  margin-bottom: 24px;
-  letter-spacing: 1px;
+.loading-spinner {
+  font-size: 4rem;
+  animation: spin 2s linear infinite;
+  margin-bottom: 20px;
 }
 
-/* UploadForm styles */
-.upload-form {
-  background: #fff;
-  padding: 32px 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.app-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-left {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  width: 340px;
-  margin-bottom: 32px;
+  align-items: flex-start;
 }
 
-.upload-form input[type="text"],
-.upload-form input[type="file"] {
-  padding: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+.app-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+}
+
+.app-subtitle {
   font-size: 1rem;
-  background: #f9fafb;
-}
-
-.upload-form button {
-  background: #3b82f6;
-  color: #fff;
-  border: none;
-  padding: 12px 0;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.upload-form button:disabled {
-  background: #a5b4fc;
-  cursor: not-allowed;
-}
-
-.upload-form p {
+  opacity: 0.9;
   margin: 0;
-  color: #e11d48;
-  font-size: 0.98rem;
 }
 
-/* Login styles */
-.login-form {
-  background: #fff;
-  padding: 32px 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-details {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  width: 340px;
-  margin-bottom: 32px;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: 0.9rem;
 }
 
-.login-form input[type="email"],
-.login-form input[type="password"] {
-  padding: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 1rem;
-  background: #f9fafb;
-}
-
-.login-form button {
-  background: #10b981;
-  color: #fff;
-  border: none;
-  padding: 12px 0;
-  border-radius: 6px;
-  font-size: 1rem;
+.user-role {
   font-weight: 600;
+  color: #f7fafc;
+}
+
+.user-email {
+  opacity: 0.8;
+  font-size: 0.85rem;
+}
+
+.trust-score {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.sign-out-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.login-form button:disabled {
-  background: #a7f3d0;
-  cursor: not-allowed;
+.sign-out-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
 }
 
-.login-form p {
-  margin: 0;
-  color: #e11d48;
-  font-size: 0.98rem;
+.app-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .upload-form, .login-form {
-    width: 95vw;
-    padding: 18px 6vw;
+.nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.nav-btn.active {
+  background: white;
+  color: #667eea;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.app-main {
+  flex: 1;
+  padding: 0;
+}
+
+.department-dashboard,
+.admin-dashboard {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.coming-soon {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.coming-soon h2 {
+  color: #2d3748;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.coming-soon p {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.coming-soon ul {
+  text-align: left;
+  color: #718096;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.coming-soon li {
+  margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
   }
-  h1 {
+
+  .header-left {
+    align-items: center;
+  }
+
+  .user-details {
+    align-items: center;
+    text-align: center;
+  }
+
+  .app-title {
+    font-size: 1.6rem;
+  }
+
+  .app-nav {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .department-dashboard,
+  .admin-dashboard {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .coming-soon {
+    padding: 30px 20px;
+  }
+
+  .coming-soon h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 1.4rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .user-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .coming-soon h2 {
     font-size: 1.4rem;
   }
 }
