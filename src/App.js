@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import UploadForm from "./components/UploadForm.js";
+import UploadForm from "./components/UploadForm.js"; // ✅ default import
 import Login from "./components/Login.js";
 import CommunityFeed from "./components/CommunityFeed.js";
 import { auth, db } from "./firebase/config.js"; 
@@ -20,32 +20,55 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [userTrustScore, setUserTrustScore] = useState(0);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setIsLoggedIn(true);
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
+  //     if (user) {
+  //       setIsLoggedIn(true);
         
-        // Fetch user role and data
-        try {
-          const userDoc = await getDoc(doc(db, "users", user.uid));
-          if (userDoc.exists()) {
-            const userData = userDoc.data();
-            setUserRole(userData.role);
-            setUserTrustScore(userData.trustScore || 100);
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
+  //       // Fetch user role and data
+  //       try {
+  //         const userDoc = await getDoc(doc(db, "users", user.uid));
+  //         if (userDoc.exists()) {
+  //           const userData = userDoc.data();
+  //           setUserRole(userData.role);
+  //           setUserTrustScore(userData.trustScore || 100);
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching user data:", error);
+  //       }
+  //     } else {
+  //       setIsLoggedIn(false);
+  //       setUserRole(null);
+  //       setUserTrustScore(0);
+  //     }
+  //     setLoading(false);
+  //   });
+  //   return () => unsubscribe();
+  // }, []);
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      console.log("User logged in:", user.uid); // Debug log
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        console.log("User data:", userData); // Debug log
+        setUserRole(userData.role);
+        setUserTrustScore(userData.trustScore || 0);
       } else {
-        setIsLoggedIn(false);
-        setUserRole(null);
-        setUserTrustScore(0);
+        console.log("No user document found!"); // Debug log
       }
-      setLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
+      setIsLoggedIn(true);
+    } else {
+      console.log("No user logged in"); // Debug log
+      setIsLoggedIn(false);
+      setUserRole(null);
+    }
+    setLoading(false);
+  });
 
+  return () => unsubscribe();
+}, []);
   const handleSignOut = async () => {
     try {
       await auth.signOut();
